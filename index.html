@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Crea códigos QR con formas y colores personalizados. Gratis, fácil y listo para descargar."
+    />
+    <meta name="theme-color" content="#f6f5f1" />
+    <title>A.H.QR — Códigos QR personalizados</title>
+    <link rel="icon" href="assets/angel-henriquez-logo.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="assets/qrcode-generator-1.4.4.min.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="A.H.QR, inicio">
+        <img src="assets/angel-henriquez-logo.jpg" alt="" width="36" height="36" />
+        <span>A.H.QR</span>
+      </a>
+      <span class="topbar-note"><span class="live-dot"></span> Tu próximo QR, a tu manera</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="eyebrow"><span>01</span> GENERADOR DE QR PERSONALIZADO</div>
+        <h1>Un código QR.<br /><span>Muchas formas.</span></h1>
+        <p>Convierte cualquier enlace o mensaje en un QR que sí dan ganas de escanear.</p>
+      </section>
+
+      <section class="workspace" aria-label="Generador de código QR">
+        <div class="editor-card">
+          <div class="card-heading">
+            <div>
+              <span class="step-label">TU DISEÑO</span>
+              <h2>Personaliza tu QR</h2>
+            </div>
+            <span class="sparkle" aria-hidden="true">✳</span>
+          </div>
+
+          <form id="qr-form">
+            <label class="field-label" for="qr-content">¿Qué quieres compartir?</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">↗</span>
+              <input
+                id="qr-content"
+                name="content"
+                type="text"
+                maxlength="1200"
+                autocomplete="off"
+                placeholder="Pega un enlace o escribe un mensaje"
+                required
+              />
+            </div>
+            <p class="field-hint">Un enlace, una ubicación, tu perfil o lo que quieras.</p>
+            <p class="privacy-hint"><span aria-hidden="true">◈</span> Tu contenido se procesa en este dispositivo. No lo almacenamos ni lo enviamos a un servidor.</p>
+
+            <div class="section-divider"></div>
+            <div class="option-heading">
+              <label class="field-label">Elige una forma</label>
+              <span class="option-caption">01 / 05</span>
+            </div>
+            <div class="shape-options" role="group" aria-label="Forma exterior del código QR">
+              <button class="shape-option is-selected" type="button" data-shape="rounded" aria-pressed="true">
+                <span class="shape-icon shape-rounded" aria-hidden="true"></span>
+                <span>Suave</span>
+              </button>
+              <button class="shape-option" type="button" data-shape="circle" aria-pressed="false">
+                <span class="shape-icon shape-circle" aria-hidden="true"></span>
+                <span>Puntos</span>
+              </button>
+              <button class="shape-option" type="button" data-shape="square" aria-pressed="false">
+                <span class="shape-icon shape-square" aria-hidden="true"></span>
+                <span>Clásico</span>
+              </button>
+              <button class="shape-option" type="button" data-shape="diamond" aria-pressed="false">
+                <span class="shape-icon shape-diamond" aria-hidden="true"></span>
+                <span>Diamante</span>
+              </button>
+              <button class="shape-option" type="button" data-shape="heart" aria-pressed="false">
+                <svg class="shape-icon shape-heart" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 21s-9-5.7-9-12a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 6.3-9 12-9 12Z" />
+                </svg>
+                <span>Corazón</span>
+              </button>
+            </div>
+
+            <div id="heart-fill-option" class="heart-fill-option" hidden>
+              <label class="color-control">
+                <span class="color-swatch"><input id="heart-fill-color" type="color" value="#f8e7ed" aria-label="Color de relleno del corazón" /></span>
+                <span><strong>Relleno del corazón</strong><small id="heart-fill-color-value">#F8E7ED</small></span>
+              </label>
+              <span>Un toque suave para tu diseño</span>
+            </div>
+
+            <div class="section-divider color-divider"></div>
+            <div class="option-heading color-heading">
+              <span class="field-label">Dale color</span>
+              <span class="option-caption">PERSONALIZADO</span>
+            </div>
+            <div class="color-options">
+              <label class="color-control">
+                <span class="color-swatch"><input id="qr-color" type="color" value="#212d25" aria-label="Color del QR" /></span>
+                <span><strong>QR</strong><small id="qr-color-value">#212D25</small></span>
+              </label>
+              <label class="color-control">
+                <span class="color-swatch"><input id="bg-color" type="color" value="#ffffff" aria-label="Color de fondo" /></span>
+                <span><strong>Fondo</strong><small id="bg-color-value">#FFFFFF</small></span>
+              </label>
+              <label class="color-control">
+                <span class="color-swatch"><input id="border-color" type="color" value="#d6a85b" aria-label="Color del borde de la figura" /></span>
+                <span><strong>Borde</strong><small id="border-color-value">#D6A85B</small></span>
+              </label>
+            </div>
+            <p id="contrast-message" class="contrast-message" role="status" aria-live="polite"></p>
+            <p id="status-message" class="status-message" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <aside class="preview-card" aria-label="Vista previa y descarga">
+          <div class="preview-top">
+            <span class="step-label">VISTA PREVIA</span>
+            <span class="preview-live"><span class="live-dot"></span> EN VIVO</span>
+          </div>
+          <div class="qr-stage">
+            <div class="qr-frame">
+              <canvas id="qr-canvas" width="1024" height="1024" aria-label="Código QR personalizado dentro de la forma elegida"></canvas>
+            </div>
+          </div>
+          <div class="preview-caption">
+            <span class="caption-icon" aria-hidden="true">⌁</span>
+            <div><strong>Hecho para escanear</strong><span>Apunta tu cámara para probarlo</span></div>
+          </div>
+          <button id="download-button" class="download-button" type="button" disabled>
+            <span>Descargar mi QR</span><span class="download-icon" aria-hidden="true">↓</span>
+          </button>
+          <p class="download-note">PNG de alta calidad · Gratis</p>
+        </aside>
+      </section>
+
+      <section class="ad-section" aria-label="Espacio publicitario">
+        <div class="ad-slot" aria-label="Espacio reservado para un anuncio">
+          <span class="ad-label">PUBLICIDAD</span>
+          <p>Espacio reservado para el anuncio</p>
+        </div>
+      </section>
+
+      <section class="bottom-note" aria-label="Información">
+        <span class="bottom-star" aria-hidden="true">✳</span>
+        <p><strong>Simple por fuera. Inteligente por dentro.</strong><br />Cada código mantiene su precisión para que escanearlo sea tan fácil como crearlo.</p>
+        <span class="note-index">A.H.QR / QR STUDIO</span>
+      </section>
+
+      <section class="learn-section" aria-labelledby="learn-title">
+        <div class="learn-heading">
+          <span class="step-label">GUÍA RÁPIDA</span>
+          <h2 id="learn-title">Un buen QR empieza antes de escanearlo.</h2>
+          <p>Consejos sencillos para crear códigos que se vean bien, funcionen y lleven a las personas al lugar correcto.</p>
+        </div>
+        <div class="learn-grid">
+          <article class="learn-card">
+            <span class="learn-number">01 / CREAR</span>
+            <h3>Comparte lo necesario</h3>
+            <p>Pega un enlace completo o escribe un mensaje breve. Si el destino es una página, comprueba que abra sin pedir permisos inesperados y que se vea bien en el teléfono.</p>
+          </article>
+          <article class="learn-card">
+            <span class="learn-number">02 / DISEÑAR</span>
+            <h3>Cuida el contraste</h3>
+            <p>Usa un QR oscuro sobre un fondo claro, deja aire alrededor del código y evita que el borde o la decoración invadan sus módulos. Un diseño bonito también tiene que poder leerse.</p>
+          </article>
+          <article class="learn-card">
+            <span class="learn-number">03 / PROBAR</span>
+            <h3>Escanea antes de compartir</h3>
+            <p>Descarga el PNG y pruébalo con la cámara de varios teléfonos. Verifica el destino, la distancia de lectura y el tamaño real si vas a imprimirlo.</p>
+          </article>
+        </div>
+        <a class="learn-link" href="guia.html">Leer la guía completa <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer>
+      <span class="footer-brand">A.H.QR</span>
+      <nav class="footer-links" aria-label="Enlaces del sitio">
+        <a href="guia.html">Guía QR</a>
+        <a href="privacidad.html">Privacidad</a>
+        <a href="contacto.html">Contacto</a>
+      </nav>
+      <div class="author-signature">
+        <img src="assets/angel-henriquez-logo.jpg" alt="Logotipo AH de Angel Henriquez" width="38" height="38" />
+        <span><small>Diseñado y desarrollado por</small><strong>Angel Henriquez</strong></span>
+      </div>
+    </footer>
+  </body>
+</html>
